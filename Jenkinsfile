@@ -48,10 +48,10 @@ pipeline {
     }
     post{
         always{
-            
+            echo 'End of execution'
         }
         failure{
-            
+            echo 'it failed'
         }
     }
 
