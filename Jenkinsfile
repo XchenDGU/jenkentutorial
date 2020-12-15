@@ -2,9 +2,18 @@
 
 pipeline {
     agent any
+    parameters{
+        string(name:'VERSION',defaultValue:'',description:'version to deply on prod')
+        choice(name:'VERSION',choices:['1.1.0','1.1.2'],description:'')
+        booleanParam(name:'executeTests',defaultValue:true,description:'')
+    }
+    
     environment {
         NEW_VERSION = '1.3.0'
-        SERVER_CREDENTIALS = credentials(server-credential'') #need credential plugin
+        SERVER_CREDENTIALS = credentials('server-credential') #need credential plugin
+    }
+    tools{
+        maven 'Maven'   
     }
     stages {
         stage('build') {
@@ -21,7 +30,11 @@ pipeline {
             }
         }
         stage('test'){
-            
+            when{
+                expression{
+                    params.executeTests
+                }
+            }
             steps{
                 echo 'testing the application...'
             }
@@ -32,7 +45,8 @@ pipeline {
                 withCredentials([
                     usernamePassword(credentials:'server-credentials',usernameVariable:USER,passwordVariable:PWD)
                 ]){
-                    bat "some script ${USER} ${PWD}"
+                    echo "some script ${USER} ${PWD}"
+                    echo "deploying version ${params.VERSION}"
                 }
             }
         }
