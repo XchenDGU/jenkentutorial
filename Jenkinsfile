@@ -37,8 +37,8 @@ pipeline {
                 withCredentials([
                     usernamePassword(credentialsId:'server-credentials',usernameVariable:'USER',passwordVariable:'PWD')
                 ]){
-                    bat "Show credential ${USER} ${PWD}"
-                    bat "deploying version ${params.VERSION}"
+                    echo "Show credential $USER $PWD"
+                    echo "deploying version ${params.VERSION}"
                 }
             }
         }
