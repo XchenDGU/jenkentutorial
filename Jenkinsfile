@@ -35,7 +35,7 @@ pipeline {
             steps{
                 echo 'deploying the application..'
                 withCredentials([
-                    usernamePassword(credentialsId:'server-credentials',usernameVariable:USER,passwordVariable:PWD)
+                    usernamePassword(credentialsId:'server-credentials',usernameVariable:'USER',passwordVariable:'PWD')
                 ]){
                     bat "Show credential ${USER} ${PWD}"
                     bat "deploying version ${params.VERSION}"
