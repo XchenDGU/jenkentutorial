@@ -10,7 +10,7 @@ pipeline {
     
     environment {
         NEW_VERSION = '1.3.0'
-        SERVER_CREDENTIALS = credentials('server-credential') #need credential plugin
+        SERVER_CREDENTIALS = credentials('server-credential') 
     }
     tools{
         maven 'Maven'   
