@@ -37,7 +37,7 @@ pipeline {
                 withCredentials([
                     usernamePassword(credentials:'server-credentials',usernameVariable:USER,passwordVariable:PWD)
                 ]){
-                    echo "some script ${USER} ${PWD}"
+                    echo "Show credential ${USER} ${PWD}"
                     echo "deploying version ${params.VERSION}"
                 }
             }
@@ -49,7 +49,7 @@ pipeline {
             echo 'End of execution'
         }
         failure{
-            echo 'it failed'
+            echo 'Execution failed'
         }
     }
 
