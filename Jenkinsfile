@@ -25,9 +25,8 @@ pipeline {
         stage('build') {
             steps {
                 script{
-                   
+                   gv.buildApp()
                 }
-                echo "building version ${NEW_VERSION}"
             }
         }
         stage('test'){
@@ -37,18 +36,17 @@ pipeline {
                 }
             }
             steps{
-                echo 'testing the application...'
+               script{
+                   gv.testApp()
+               }
             }
         }
         stage('deploy'){
             steps{
-                echo 'deploying the application..'
-                withCredentials([
-                    usernamePassword(credentialsId:'server-credentials',usernameVariable:'USER',passwordVariable:'PWD')
-                ]){
-                    echo "Show credential $USER $PWD"
-                    echo "deploying version ${params.VERSION}"
+                script{
+                    gv.deployApp()
                 }
+                
             }
         }
         
