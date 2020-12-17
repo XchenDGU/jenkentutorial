@@ -1,5 +1,5 @@
 def buildApp(){
-    echo 'building the application...'
+    echo 'building the application...with automated polling from Jenkins'
     echo "building version ${NEW_VERSION}"
 
 }
