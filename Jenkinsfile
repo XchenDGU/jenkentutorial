@@ -56,7 +56,7 @@ pipeline {
             echo 'End of execution'
         }
         failure{
-            echo 'Execution failed'
+            echo 'Execution failed123'
         }
     }
 
